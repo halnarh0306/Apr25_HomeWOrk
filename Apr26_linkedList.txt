@@ -1,0 +1,136 @@
+"""1. Intersection of two linked lists
+https://leetcode.com/problems/intersection-of-two-linked-lists/
+---->>
+  public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+          int lenA=0;
+           int lenB=0;
+        ListNode tempA=headA;
+        ListNode tempB=headB;
+         while(tempA!=null)
+         {
+             lenA++;
+             tempA=tempA.next;
+         }
+          while(tempB!=null)
+         {
+             lenB++;
+             tempB=tempB.next;
+         }
+        
+        int diff=Math.abs(lenA-lenB);
+        
+        tempA=headA;
+        tempB=headB;
+        if(lenA>lenB)
+        {
+            while(diff-- >0)
+                tempA=tempA.next;
+         }
+        else
+        {
+            while(diff-- >0)
+                tempB=tempB.next;
+        }
+        
+        while(tempA!=tempB)
+        {
+            tempA=tempA.next;
+            tempB=tempB.next;
+            
+            if(tempA==null || tempB==null)
+                return null;
+        }
+        
+        return tempA;
+    }
+}
+
+
+2. Find if the liked list is a Palindrome
+https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/
+
+Ex -   
+M->A->D->A->M
+Output - True
+
+Ex - S->T->A->R
+Output - false"""
+
+--->>>
+package Apr26_linkedListWithStack;
+
+import java.util.Stack;
+
+import Apr25_Linkedlist.Node;
+
+public class FindLinkedlist_palindrome {
+	static Node head;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		addLast('S');
+		addLast('T');
+		addLast('A');
+		addLast('R');
+		// addLast('M');
+		boolean isplain = isPalindrome(head);
+		System.out.println(isplain);
+
+	}
+
+	public static void addLast(char data) {
+		// TODO Auto-generated method stub
+		Node newNode = new Node(data);
+		if (head == null)
+			head = newNode;
+
+		else {
+			newNode.next = head;
+			head = newNode;
+		}
+
+	}
+
+	public static boolean isPalindrome(Node head) {
+		// TODO Auto-generated method stub
+		boolean isPalin = true;
+
+		Stack<Character> s = new Stack();
+		Node slow = head;
+
+		while (slow != null) {
+			s.push((char) slow.data);
+			slow = slow.next;
+		}
+
+		while (head != null) {
+			int i = s.pop();
+			if (head.data == i) {
+				isPalin = true;
+			} else {
+				isPalin = false;
+				break;
+			}
+			head = head.next;
+		}
+
+		return isPalin;
+	}
+
+}
+
+package Apr26_linkedListWithStack;
+
+public class Node {
+
+	public Character data;
+	Node next;
+
+	Node(Character data) {
+		this.data = data;
+		this.next = next;
+	}
+
+}

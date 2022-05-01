@@ -1,0 +1,103 @@
+"1. Program to find size of Doubly Linked List
+-->>>
+
+package Apr27_LinkedList_Double;
+
+import Apr27_linkedlist.DNode;
+
+public class Doubly_LinkedLIst_findSize {
+         static DNode head;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		addFirst(100);
+		addFirst(200);
+		addFirst(300);
+		Display();
+		
+	   getSize();
+	
+	}
+	private static void getSize() {
+		// TODO Auto-generated method stub
+		if(head==null)
+			return;
+		
+		else
+		{    int count=0;
+			DNode cur=head;
+			DNode prev=head;
+			
+			while(cur!=null)
+			{ 
+				cur=cur.right;
+				prev=prev.right;
+				 count++;
+			}
+			System.out.println("Size Of the Doubly Linkedlist is= "+ count);
+		
+		
+		}
+		
+	}
+
+	private static void addFirst(int data) {
+		// TODO Auto-generated method stub
+		DNode d = new DNode(data);
+		if (head == null)
+			head = d;
+
+		else {
+			d.right = head;
+			head.left = d;
+			head = d;
+		}
+
+	}
+	
+	private static void Display() {
+		// TODO Auto-generated method stub
+		if (head == null) {
+			System.out.println("NOde is Emapty!");
+			return;
+		} else {
+
+			DNode cul = head;
+			while (cul != null) {
+				System.out.print(cul.data + " ");
+				cul = cul.right;
+
+			}
+			System.out.println();
+
+		}
+
+	}
+
+}
+package Apr27_LinkedList_Double;
+
+public class DNode {
+
+	DNode right;
+	DNode left;
+	int data;
+
+	DNode(int data) {
+		this.data = data;
+		this.right = right;
+		this.left = left;
+	}
+
+}
+
+
+        
+
+2. Remove the nodes which are greater than 25 in the double linked list
+
+10->29->34->12->50->7
+
+Output
+
+10->12->7"

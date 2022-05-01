@@ -1,0 +1,125 @@
+"1. Create a myStack Class which has the following methods:
+     1. Push(x) : inserts the data into the stack 
+     2. Pop(): Removes the top element.
+     3. Peek() : Displays the top element.
+---->>> ANS
+        package Apr28_Stack;
+
+import java.util.Stack;
+
+public class StackMain_Class {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		myStack s = new myStack();
+		s.push(100);
+		s.push(200);
+		s.push(300);
+		s.pop();
+		s.display();
+		System.out.println(s.peek() + " ");
+
+	}
+
+}
+ package Apr28_Stack;
+
+public class myStack {
+	final int size = 5;
+
+	int[] s = new int[size];
+
+	int top = -1;
+
+	int push(int data) {
+		if (top >= size - 1) {
+			System.out.println("Stack is Overflow");
+			return -1;
+		} else {
+			top++;
+			s[top] = data;
+			return s[top];
+		}
+	}
+
+	int pop() {
+		if (top == -1) {
+			System.out.println("Stack is Underflow");
+			return -1;
+		} else {
+			int temp = s[top];
+			top--;
+			return temp;
+		}
+	}
+
+	int peek() {
+		if (top == -1) {
+			System.out.println("Stack is empty!");
+			return -1;
+
+		} else {
+			return s[top];
+		}
+	}
+
+	void display() {
+		for (int i = top; i >= 0; i--) {
+			System.out.println(s[i] + " ");
+		}
+	}
+
+}
+
+
+               
+
+2. Remove duplicates from a sorted array using stack
+
+Ex - {0,0,1,1,1,1,2,2,4,5}
+Output - {0,1,2,4,5};"
+
+--->>>
+
+package Apr28_Stack;
+
+import java.util.Stack;
+
+public class removeDuplicate_inSortedArray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr ={0,0,1,1,1,1,2,2,4,5};
+		removeDupticate(arr);
+
+	}
+
+	private static void removeDupticate(int[] arr) {
+		// TODO Auto-generated method stub
+
+		Stack<Integer> a = new Stack();
+
+		for (int i = 0; i < arr.length; i++) {
+			// if(arr[i]!=arr[i+1])
+			// a.push(arr[i]);
+
+			if (a.isEmpty()) {
+				a.push(arr[i]);
+			} else {
+				int var = a.peek();
+				if (arr[i] != var)
+					a.push(arr[i]);
+			}
+
+		}
+		// int val=arr[arr.length-1];
+		// a.push(val);
+		System.out.println(a);
+
+	}
+
+}
+
+
+
